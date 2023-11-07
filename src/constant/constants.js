@@ -13,6 +13,7 @@ export const LOTTO_CONSTANT = Object.freeze({
   numberCount: 6,
   roundingDigit: 2,
   percentageFactor: 100,
+  reverseRankList: ['fifth', 'fourth', 'third', 'second', 'first'],
 });
 
 export const LIMIT_CONSTANT = Object.freeze({
@@ -92,7 +93,7 @@ export const ERROR_MESSAGE = Object.freeze({
   wrongMoneyInput:
     '[ERROR] 로또는 개당 1000원이므로, 1000으로 나누어떨어지는 금액을 입력하셔야 합니다.\n',
   wrongLottoNumberInput:
-    '[ERROR] 당첨 번호는 1,2,3,4,5,6 처럼 중복되지 않는 6개의 수여야 합니다.\n',
+    '[ERROR] 당첨 번호는 각각 1 ~ 45 사이이며, 중복되지 않는 6개의 수여야 합니다.\n',
   wrongBonusNumberInput:
     '[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 하나의 수여야 합니다.\n',
 });

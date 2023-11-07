@@ -1,5 +1,4 @@
 import { LOTTO_RANK, LIMIT_CONSTANT } from '../constant/constants.js';
-import { Validator } from '../utility/validation.js';
 
 class LottoCenter {
   #publishedLottoList = [];

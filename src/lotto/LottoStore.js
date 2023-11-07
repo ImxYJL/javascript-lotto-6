@@ -61,23 +61,22 @@ class LottoStore {
     print(FORMATTER.publishCountFormatter(this.#publishCount));
   }
 
-  #getMoney() {
+  getMoney() {
     return this.#money;
   }
 
   publishLottos() {
-    const publishedLottoList = [];
+    const issuedLottoList = [];
 
     Array(this.#publishCount)
       .fill()
       .forEach(() => {
         const lottoNumbers = this.#getLottoNumbers();
-        const lotto = new Lotto(...lottoNumbers);
-        // const lotto = new Lotto(Array.from(lottoNumbers));
-        publishedLottoList.push(lotto);
+        const lotto = new Lotto([...lottoNumbers]);
+        issuedLottoList.push(lotto);
       });
 
-    return publishedLottoList.slice();
+    return [...issuedLottoList];
   }
 }
 

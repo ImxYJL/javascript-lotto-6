@@ -16,6 +16,7 @@ class Lotto {
 
   #validateNumbers(numbers) {
     if (numbers.length !== LOTTO_CONSTANT.numberCount) {
+      console.log(numbers.length, LOTTO_CONSTANT.numberCount);
       throw new Error(ERROR_MESSAGE.wrongLottoNumberCount);
     }
 
@@ -35,11 +36,6 @@ class Lotto {
   }
 
   #hasBonusNumber(bonusNumber) {
-    if (this.#numbers.includes(bonusNumber)) return true;
-    return false;
-  }
-
-  hasBonusNumber(bonusNumber) {
     if (this.#numbers.includes(bonusNumber)) return true;
     return false;
   }

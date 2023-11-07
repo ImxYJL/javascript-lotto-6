@@ -12,9 +12,8 @@ export const getAndValidateInput = async (message, validationList) => {
       userInput = await readLineAsync(message);
       Validator.validateInput(userInput, validationList);
       break;
-      // return userInput; // 유효한 입력을 받았으므로 while 루프를 빠져나옵니다.
     } catch (error) {
-      Console.print(error.message);
+      print(error.message);
     }
   }
 

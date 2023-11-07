@@ -1,5 +1,5 @@
 import { LOTTO_REGEX, MESSAGE, ERROR_MESSAGE } from '../constant/constants.js';
-import { print, getAndValidateInput } from '../utility/console.js';
+import { getAndValidateInput } from '../utility/console.js';
 import { Validator } from '../utility/validation.js';
 
 class LottoGameHost {
@@ -14,7 +14,6 @@ class LottoGameHost {
   #bonusNumberValidationList = [
     (input) => Validator.isMatchingRegex(input, LOTTO_REGEX.bonusNumberInput),
     (input) => this.#isBonusNumberDuplicate(Number(input)),
-    // this.#isBonusNumberDuplicate(Number(input)),
   ];
 
   #isBonusNumberDuplicate(bonusNumber) {
@@ -24,10 +23,11 @@ class LottoGameHost {
   }
 
   async setLottoWinningNumbers() {
-    this.#winningNumbers = await getAndValidateInput(
-      MESSAGE.lottoNumberInput,
+    const winningNumbers = await getAndValidateInput(
+      MESSAGE.winningNumbersInput,
       this.#winningNumbersValidationList,
-    ).map(Number);
+    );
+    this.#winningNumbers = winningNumbers.split(',').map(Number);
 
     const bonusNumber = await getAndValidateInput(
       MESSAGE.bonusNumberInput,
@@ -37,7 +37,7 @@ class LottoGameHost {
   }
 
   getWinningNumbers() {
-    return this.#winningNumbers.splice();
+    return [...this.#winningNumbers];
   }
 
   getBonusNumber() {

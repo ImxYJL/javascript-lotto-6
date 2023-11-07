@@ -70,7 +70,7 @@ export const FORMATTER = Object.freeze({
     return `[${elements}]`;
   },
   returnRateFormatter(returnRate) {
-    return `총 수익률은 ${returnRate}입니다.`;
+    return `총 수익률은 ${returnRate}%입니다.`;
   },
   resultsPrintFormatter(matchedNumber, bonudNumberText, reward, count) {
     return `${matchedNumber}개 일치${bonudNumberText} (${reward}) - ${count}개`;
@@ -80,19 +80,19 @@ export const FORMATTER = Object.freeze({
 export const MESSAGE = Object.freeze({
   moneyInput: '구입금액을 입력해 주세요.\n',
   bonusNumberInput: '보너스 번호를 입력해 주세요.\n',
-  winningNmbersInput: '당첨 번호를 입력해 주세요.\n',
-  titleForResults: '당첨 통계',
+  winningNumbersInput: '당첨 번호를 입력해 주세요.\n',
+  titleForResults: '\n당첨 통계',
 });
 
 export const ERROR_MESSAGE = Object.freeze({
-  wrongLottoNumberCount: '[ERROR] 로또 번호는 6개여야 합니다.',
-  wrongNumberInput: '[ERROR] 숫자만 입력할 수 있습니다.',
+  wrongLottoNumberCount: '[ERROR] 로또 번호는 6개여야 합니다.\n',
+  wrongNumberInput: '[ERROR] 숫자만 입력할 수 있습니다.\n',
   wrongMoneyRangeInput:
-    '[ERROR] 로또 구입 금액은 최소 1000원 이상, 최대 9조 원까지 가능합니다.',
+    '[ERROR] 로또 구입 금액은 최소 1000원 이상, 최대 9조 원까지 가능합니다.\n',
   wrongMoneyInput:
-    '[ERROR] 로또는 개당 1000원이므로, 1000으로 나누어떨어지는 금액을 입력하셔야 합니다.',
+    '[ERROR] 로또는 개당 1000원이므로, 1000으로 나누어떨어지는 금액을 입력하셔야 합니다.\n',
   wrongLottoNumberInput:
-    '[ERROR] 당첨 번호는 1,2,3,4,5,6 처럼 중복되지 않는 6개의 수여야 합니다.',
+    '[ERROR] 당첨 번호는 1,2,3,4,5,6 처럼 중복되지 않는 6개의 수여야 합니다.\n',
   wrongBonusNumberInput:
-    '[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 하나의 수여야 합니다.',
+    '[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 하나의 수여야 합니다.\n',
 });

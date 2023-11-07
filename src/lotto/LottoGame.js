@@ -13,6 +13,7 @@ class LottoGame {
   // private?
   lottoStore = null;
   lottoGameHost = null;
+  lottoCenter = null;
   // freeze?
   reverseRankList = ['fifth', 'fourth', 'third', 'second', 'first'];
 
@@ -29,7 +30,7 @@ class LottoGame {
       const count = lottoResultsList[rank];
 
       print(
-        resultsPrintFormatter(matchedNumber, bonudNumberText, reward, count),
+        FORMATTER.resultsPrintFormatter(matchedNumber, bonudNumberText, reward, count),
       );
     });
   }
@@ -53,34 +54,34 @@ class LottoGame {
   }
 
   // 금액을 입력받고 로또를 발행
-  readyToStart() {
-    this.lottoStore.setLottoStore();
-    this.LottoCenter = new LottoCenter(this.lottoStore.publishLottos());
+  async readyToStart() {
+    await this.lottoStore.setLottoStore();
+    this.lottoCenter = new LottoCenter(this.lottoStore.publishLottos());
   }
 
   async playLottoGame() {
-    this.readyToStart();
+    await this.readyToStart();
 
     // 로또 당첨 번호들 세팅
-    this.lottoGameHost.setLottoWinningNumbers();
+    await this.lottoGameHost.setLottoWinningNumbers();
     // 로또 당첨여부 조사
-    this.LottoCenter.inspectLottoWinningStatus(
-      this.lottoGameHost.getWinningNumbers,
-      this.lottoGameHost.getBonusNumber,
+    this.lottoCenter.inspectLottoWinningStatus(
+      this.lottoGameHost.getWinningNumbers(),
+      this.lottoGameHost.getBonusNumber(),
     );
 
     // 리턴받은 결과를 바탕으로 결과 출력
     print(MESSAGE.titleForResults);
     print(FORMATTER.contour);
-    const lottoResultsList = this.LottoCenter.getLottoResultsList();
+    const lottoResultsList = this.lottoCenter.getLottoResultsList();
     this.#printResults(lottoResultsList);
 
     // 수익률 출력
-    const returnRate = calculateReturnRate(
+    const returnRate = this.calculateReturnRate(
       this.lottoStore.getMoney(),
       lottoResultsList,
     );
-    this.#printResults(returnRate);
+    this.printReturnRate(returnRate);
   }
 }
 

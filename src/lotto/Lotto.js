@@ -1,4 +1,5 @@
-import { print } from '../utility/console.js';
+//import { print } from '../utility/console.js';
+import { Console } from '@woowacourse/mission-utils';
 import {
   LOTTO_CONSTANT,
   LOTTO_RANK,
@@ -41,7 +42,7 @@ class Lotto {
   }
 
   printNumbers() {
-    print(FORMATTER.lottoPrintFormatter(this.#numbers));
+    Console.print(FORMATTER.lottoPrintFormatter(this.#numbers));
   }
 
   getRank(winningNumbers, bonusNumber) {

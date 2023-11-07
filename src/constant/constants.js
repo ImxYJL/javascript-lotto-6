@@ -11,7 +11,7 @@ export const LOTTO_CONSTANT = Object.freeze({
   maxInclusive: 45,
   minPrice: 1000,
   numberCount: 6,
-  roundingDigit: 2,
+  roundingDigit: 1,
   percentageFactor: 100,
   reverseRankList: ['fifth', 'fourth', 'third', 'second', 'first'],
 });
@@ -56,15 +56,18 @@ export const LOTTO_RANK = Object.freeze({
     reward: 5000,
     matchedNumber: 3,
     bonudNumberText: '',
-    rewardText: '5000원',
+    rewardText: '5,000원',
   },
 });
 
 export const FORMATTER = Object.freeze({
   contour: '---',
   publishCountFormatter(publishCount) {
-    return `\n${publishCount}개를 구매했습니다.`;
+    return `${publishCount}개를 구매했습니다.`;
   },
+  // publishCountFormatter(publishCount) {
+  //   return `\n${publishCount}개를 구매했습니다.`;
+  // },
   lottoPrintFormatter(lottoList) {
     const elements = lottoList.join(', ');
     return `[${elements}]`;
@@ -81,7 +84,7 @@ export const MESSAGE = Object.freeze({
   moneyInput: '구입금액을 입력해 주세요.\n',
   bonusNumberInput: '\n보너스 번호를 입력해 주세요.\n',
   winningNumbersInput: '\n당첨 번호를 입력해 주세요.\n',
-  titleForResults: '\n당첨 통계',
+  titleForResults: '\n당첨 통계\n---',
 });
 
 export const ERROR_MESSAGE = Object.freeze({

@@ -20,7 +20,7 @@ class LottoGame {
     this.lottoGameHost = new LottoGameHost();
   }
 
-  #printResults(lottoResultsList) {
+  printResults(lottoResultsList) {
     LOTTO_CONSTANT.reverseRankList.forEach((rank) => {
       const matchedNumber = LOTTO_RANK[rank].matchedNumber;
       const bonudNumberText = LOTTO_RANK[rank].bonudNumberText;
@@ -28,7 +28,12 @@ class LottoGame {
       const count = lottoResultsList[rank];
 
       print(
-        FORMATTER.resultsPrintFormatter(matchedNumber, bonudNumberText, reward, count),
+        FORMATTER.resultsPrintFormatter(
+          matchedNumber,
+          bonudNumberText,
+          reward,
+          count,
+        ),
       );
     });
   }
@@ -51,7 +56,7 @@ class LottoGame {
     print(FORMATTER.returnRateFormatter(returnRate));
   }
 
-  calculateAndPrintResults(){
+  calculateAndPrintResults() {
     this.lottoCenter.inspectLottoWinningStatus(
       this.lottoGameHost.getWinningNumbers(),
       this.lottoGameHost.getBonusNumber(),
@@ -59,12 +64,12 @@ class LottoGame {
 
     // 리턴받은 결과를 바탕으로 결과 출력
     print(MESSAGE.titleForResults);
-    print(FORMATTER.contour);
+    // print(FORMATTER.contour);
     const lottoResultsList = this.lottoCenter.getLottoResultsList();
-    this.#printResults(lottoResultsList);
+    this.printResults(lottoResultsList);
   }
 
-  calculateAndPrintReturnRate(lottoResultsList){
+  calculateAndPrintReturnRate(lottoResultsList) {
     const returnRate = this.calculateReturnRate(
       this.lottoStore.getMoney(),
       lottoResultsList,

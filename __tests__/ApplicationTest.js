@@ -86,7 +86,6 @@ describe('로또 테스트', () => {
       '총 수익률은 62.5%입니다.',
     ];
 
-    // console.log(logSpy.mock.calls);
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });

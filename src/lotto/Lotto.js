@@ -1,5 +1,4 @@
-//import { print } from '../utility/console.js';
-import { Console } from '@woowacourse/mission-utils';
+import { print } from '../utility/console.js';
 import {
   LOTTO_CONSTANT,
   LOTTO_RANK,
@@ -17,7 +16,6 @@ class Lotto {
 
   #validateNumbers(numbers) {
     if (numbers.length !== LOTTO_CONSTANT.numberCount) {
-      // console.log(numbers.length, LOTTO_CONSTANT.numberCount);
       throw new Error(ERROR_MESSAGE.wrongLottoNumberCount);
     }
 
@@ -42,7 +40,7 @@ class Lotto {
   }
 
   printNumbers() {
-    Console.print(FORMATTER.lottoPrintFormatter(this.#numbers));
+    print(FORMATTER.lottoPrintFormatter(this.#numbers));
   }
 
   getRank(winningNumbers, bonusNumber) {

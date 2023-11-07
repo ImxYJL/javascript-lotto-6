@@ -1,5 +1,6 @@
 import Lotto from '../src/lotto/Lotto.js';
 import LottoStore from '../src/lotto/LottoStore.js';
+import { ERROR_MESSAGE } from '../src/constant/constants.js';
 import { getAndValidateInput } from '../src/utility/console.js';
 
 // 에러상황 추가하기
@@ -35,5 +36,38 @@ describe('LottoStore 클래스 테스트', () => {
     lottos.forEach((lotto) => {
       expect(lotto).toBeInstanceOf(Lotto);
     });
+  });
+});
+
+describe('LottoStore 클래스 에러 발생 테스트', () => {
+  test('setLottoStore에서 1000 미만의 입력에 예외를 발생시키는지 테스트', async () => {
+    const UNDER_MIN_RANGE_MONEY = '900';
+    // getAndValidateInput.mockRejectedValue(
+    //   new Error(ERROR_MESSAGE.wrongMoneyRangeInput),
+    // );
+    const lottoStore = new LottoStore();
+    await expect(lottoStore.setLottoStore()).rejects.toThrow(
+      ERROR_MESSAGE.wrongMoneyRangeInput,
+    );
+  });
+
+  test('setLottoStore에서 9조를 초과하는 입력에 예외를 발생시키는지 테스트', async () => {
+    const UPPER_MIN_RANGE_MONEY = '90000000000001';
+    //getAndValidateInput.mockResolvedValue(UPPER_MIN_RANGE_MONEY);
+    const lottoStore = new LottoStore();
+
+    await expect(getAndValidateInput(UPPER_MIN_RANGE_MONEY)).rejects.toThrow(
+      ERROR_MESSAGE.wrongMoneyRangeInput,
+    );
+  });
+
+  test('setLottoStore에서 숫자가 아닌 입력에 예외를 발생시키는지 테스트', () => {
+    const MONEY_WITH_ALPHABET = '10000a';
+    getAndValidateInput.mockResolvedValue(MONEY_WITH_ALPHABET);
+    const lottoStore = new LottoStore();
+
+    expect(lottoStore.getAndValidateInput()).toThrow(
+      ERROR_MESSAGE.wrongMoneyRangeInput,
+    );
   });
 });

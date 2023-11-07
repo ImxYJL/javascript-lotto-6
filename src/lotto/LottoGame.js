@@ -64,7 +64,6 @@ class LottoGame {
 
     // 리턴받은 결과를 바탕으로 결과 출력
     print(MESSAGE.titleForResults);
-    // print(FORMATTER.contour);
     const lottoResultsList = this.lottoCenter.getLottoResultsList();
     this.printResults(lottoResultsList);
   }

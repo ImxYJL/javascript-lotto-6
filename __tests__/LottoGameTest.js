@@ -22,7 +22,7 @@ describe('LottoGame 클래스 테스트', () => {
     LottoStore.mockImplementation(() => mockLottoStore);
     LottoCenter.mockImplementation(() => mockLottoCenter);
 
-    lottoGame = new LottoGame(); // 여기로 이동
+    lottoGame = new LottoGame();
   });
 
   test('buyAndIssueLottos 메소드가 정상적으로 동작하는지 테스트', async () => {
@@ -67,7 +67,7 @@ describe('LottoGame 클래스 테스트', () => {
     LottoGameHost.mockImplementation(() => mockLottoGameHost);
     LottoCenter.mockImplementation(() => mockLottoCenter);
 
-    lottoGame.lottoCenter = mockLottoCenter; // lottoCenter 설정
+    lottoGame.lottoCenter = mockLottoCenter;
 
     lottoGame.calculateAndPrintResults();
 

@@ -60,7 +60,6 @@ export const LOTTO_RANK = Object.freeze({
   },
 });
 
-// 컨투어 밖으로 빼고 금액출력도 포맷해보자....
 export const FORMATTER = Object.freeze({
   contour: '---',
   publishCountFormatter(publishCount) {

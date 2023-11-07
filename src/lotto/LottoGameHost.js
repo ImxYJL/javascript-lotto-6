@@ -17,11 +17,11 @@ class LottoGameHost {
     (input) => this.#isBonusNumberDuplicate(Number(input)),
   ];
 
-  #isWinningNumberDuplicate(input){
+  #isWinningNumberDuplicate(input) {
     const numbers = input.split(',').map(Number);
     const uniqueNumbers = new Set(numbers);
 
-    if(uniqueNumbers.size !== numbers.length){
+    if (uniqueNumbers.size !== numbers.length) {
       throw new Error(ERROR_MESSAGE.wrongLottoNumberInput);
     }
   }
@@ -37,9 +37,7 @@ class LottoGameHost {
       MESSAGE.winningNumbersInput,
       this.#winningNumbersValidationList,
     );
-
-
-    //this.#winningNumbers = winningNumbers.split(',').map(Number);
+    this.#winningNumbers = winningNumbers.split(',').map(Number);
 
     const bonusNumber = await getAndValidateInput(
       MESSAGE.bonusNumberInput,

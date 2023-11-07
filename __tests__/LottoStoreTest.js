@@ -1,23 +1,39 @@
-import LottoStore from './LottoStore.js'; // 경로는 실제 경로에 맞게 수정해야 합니다.
-import { LOTTO_CONSTANT } from '../constant/constants.js';
+import Lotto from '../src/lotto/Lotto.js';
+import LottoStore from '../src/lotto/LottoStore.js';
+import { getAndValidateInput } from '../src/utility/console.js';
 
-describe('LottoStore class', () => {
-  let lottoStore = null;
+// 에러상황 추가하기
+jest.mock('../src/utility/console.js', () => ({
+  getAndValidateInput: jest.fn(),
+  print: jest.fn(),
+}));
 
-  beforeEach(() => {
+describe('LottoStore 클래스 테스트', () => {
+  let lottoStore;
+
+  beforeEach(async () => {
+    const NORMAL_MONEY_INPUT = '5000';
+    getAndValidateInput.mockResolvedValue(NORMAL_MONEY_INPUT);
+
     lottoStore = new LottoStore();
+    await lottoStore.setLottoStore();
   });
 
-  test('should create a new LottoStore instance correctly', () => {
-    expect(lottoStore).toBeInstanceOf(LottoStore);
+  test('setLottoStore에서 정상적으로 money를 세팅하는지 테스트', () => {
+    const NOMAL_MONEY = 5000;
+    expect(lottoStore.getMoney()).toBe(NOMAL_MONEY);
   });
 
-  // 'setLottoStore'는 비동기 메소드이고 사용자 입력을 기다리므로 테스트하기 어렵습니다.
-  // 따라서 이 메소드는 통합 테스트의 일환으로 별도의 테스트 케이스에서 처리하는 것이 좋습니다.
+  test('setLottoStore에서 정상적으로 publishCount를 세팅하는지 테스트', () => {
+    const LOTTO_NUMBER = 5;
+    const lottos = lottoStore.publishLottos();
+    expect(lottos.length).toBe(LOTTO_NUMBER);
+  });
 
-  test('publishLottos should return an array of Lotto instances', () => {
-    // setLottoStore 메소드를 호출하여 상태를 설정하지 않았기 때문에,
-    // publishLottos 메소드의 결과가 비어있는 배열이어야 합니다.
-    expect(lottoStore.publishLottos()).toEqual([]);
+  test('publishLottos 함수가 Lotto 인스턴스를 반환하는지 테스트', () => {
+    const lottos = lottoStore.publishLottos();
+    lottos.forEach((lotto) => {
+      expect(lotto).toBeInstanceOf(Lotto);
+    });
   });
 });

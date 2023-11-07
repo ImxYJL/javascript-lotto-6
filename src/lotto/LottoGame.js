@@ -57,6 +57,7 @@ class LottoGame {
   async readyToStart() {
     await this.lottoStore.setLottoStore();
     this.lottoCenter = new LottoCenter(this.lottoStore.publishLottos());
+    this.lottoCenter.tryPrintAllLottoNumbers();
   }
 
   async playLottoGame() {

@@ -63,7 +63,7 @@ export const LOTTO_RANK = Object.freeze({
 export const FORMATTER = Object.freeze({
   contour: '---',
   publishCountFormatter(publishCount) {
-    return `${publishCount}개를 구매했습니다.`;
+    return `\n${publishCount}개를 구매했습니다.`;
   },
   lottoPrintFormatter(lottoList) {
     const elements = lottoList.join(', ');
@@ -79,8 +79,8 @@ export const FORMATTER = Object.freeze({
 
 export const MESSAGE = Object.freeze({
   moneyInput: '구입금액을 입력해 주세요.\n',
-  bonusNumberInput: '보너스 번호를 입력해 주세요.\n',
-  winningNumbersInput: '당첨 번호를 입력해 주세요.\n',
+  bonusNumberInput: '\n보너스 번호를 입력해 주세요.\n',
+  winningNumbersInput: '\n당첨 번호를 입력해 주세요.\n',
   titleForResults: '\n당첨 통계',
 });
 

@@ -37,6 +37,12 @@ class LottoCenter {
     }
   }
 
+  tryPrintAllLottoNumbers(){
+    this.#publishedLottoList.forEach((lotto =>{
+      lotto.printNumbers();
+    }))
+  }
+
   inspectLottoWinningStatus(winningNumbers, bonusNumber) {
     this.#publishedLottoList.forEach((lotto) => {
       this.#setLottoResultList(lotto.getRank(winningNumbers, bonusNumber));

@@ -61,13 +61,10 @@ export const LOTTO_RANK = Object.freeze({
 });
 
 export const FORMATTER = Object.freeze({
-  contour: '---',
   publishCountFormatter(publishCount) {
-    return `${publishCount}개를 구매했습니다.`;
+    return `\n${publishCount}개를 구매했습니다.`;
   },
-  // publishCountFormatter(publishCount) {
-  //   return `\n${publishCount}개를 구매했습니다.`;
-  // },
+
   lottoPrintFormatter(lottoList) {
     const elements = lottoList.join(', ');
     return `[${elements}]`;

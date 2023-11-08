@@ -1,5 +1,5 @@
 import Lotto from '../src/lotto/Lotto.js';
-import { ERROR_MESSAGE } from '../src/constant/constants.js';
+import { ERROR_MESSAGE } from '../src/constant/constant.js';
 
 jest.mock('@woowacourse/mission-utils');
 

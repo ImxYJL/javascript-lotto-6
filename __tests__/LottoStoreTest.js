@@ -1,6 +1,6 @@
 import Lotto from '../src/lotto/Lotto.js';
 import LottoStore from '../src/lotto/LottoStore.js';
-import { ERROR_MESSAGE } from '../src/constant/constants.js';
+import { ERROR_MESSAGE } from '../src/constant/constant.js';
 import { getAndValidateInput } from '../src/utility/console.js';
 
 // 에러상황 추가하기

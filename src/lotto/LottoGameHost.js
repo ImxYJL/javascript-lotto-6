@@ -1,6 +1,6 @@
 import { Validator } from '../utility/validation.js';
 import { getAndValidateInput } from '../utility/console.js';
-import { LOTTO_REGEX, MESSAGE, ERROR_MESSAGE } from '../constant/constants.js';
+import { LOTTO_REGEX, MESSAGE, ERROR_MESSAGE } from '../constant/constant.js';
 
 class LottoGameHost {
   #winningNumbers = [];

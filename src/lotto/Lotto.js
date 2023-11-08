@@ -4,7 +4,7 @@ import {
   LOTTO_RANK,
   ERROR_MESSAGE,
   FORMATTER,
-} from '../constant/constants.js';
+} from '../constant/constant.js';
 
 class Lotto {
   #numbers;

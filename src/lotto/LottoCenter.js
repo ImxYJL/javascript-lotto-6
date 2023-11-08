@@ -1,4 +1,4 @@
-import { LOTTO_RANK, LIMIT_CONSTANT } from '../constant/constants.js';
+import { LOTTO_RANK, LIMIT_CONSTANT } from '../constant/constant.js';
 
 class LottoCenter {
   #publishedLottoList = [];
@@ -36,10 +36,10 @@ class LottoCenter {
     }
   }
 
-  tryPrintAllLottoNumbers(){
-    this.#publishedLottoList.forEach((lotto =>{
+  tryPrintAllLottoNumbers() {
+    this.#publishedLottoList.forEach((lotto) => {
       lotto.printNumbers();
-    }))
+    });
   }
 
   inspectLottoWinningStatus(winningNumbers, bonusNumber) {

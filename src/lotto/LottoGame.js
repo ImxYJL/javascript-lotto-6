@@ -7,7 +7,7 @@ import {
   LOTTO_RANK,
   FORMATTER,
   MESSAGE,
-} from '../constant/constants.js';
+} from '../constant/constant.js';
 
 class LottoGame {
   // private?

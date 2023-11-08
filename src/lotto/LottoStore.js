@@ -8,7 +8,7 @@ import {
   MESSAGE,
   ERROR_MESSAGE,
   FORMATTER,
-} from '../constant/constants.js';
+} from '../constant/constant.js';
 
 class LottoStore {
   #money = 0;

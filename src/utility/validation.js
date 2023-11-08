@@ -1,8 +1,4 @@
-import {
-  LOTTO_REGEX,
-  DECIMAL_DIGIT_REGEX,
-  ERROR_MESSAGE,
-} from '../constant/constants.js';
+import { DECIMAL_DIGIT_REGEX, ERROR_MESSAGE } from '../constant/constant.js';
 
 export const Validator = {
   isDecimalChar: (character) => DECIMAL_DIGIT_REGEX.test(character),
@@ -32,11 +28,6 @@ export const Validator = {
       throw new Error(ERROR_MESSAGE.wrongLottoNumberInput);
     }
   },
-  // isEmptyString: (string) => {
-  //   if (string.trim() === '') {
-  //     throw new Error(ERROR_MESSAGE.wrongNumberInput);
-  //   }
-  // },
 
   validateInput: (input, validationList) => {
     validationList.forEach((validation) => validation(input));

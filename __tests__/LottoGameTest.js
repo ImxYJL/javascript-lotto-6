@@ -33,18 +33,17 @@ describe('LottoGame 클래스 테스트', () => {
   });
 
   test('calculateReturnRate 메소드가 정상적으로 동작하는지 테스트', () => {
-    const money = 1000;
+    const money = 1000000;
     const lottoResultsList = {
       first: 0,
       second: 0,
       third: 0,
-      fourth: 0,
-      fifth: 0,
+      fourth: 1,
+      fifth: 22,
     };
 
     const returnRate = lottoGame.calculateReturnRate(money, lottoResultsList);
-
-    expect(returnRate).toBe('0.00');
+    expect(returnRate).toBe('16.0');
   });
 
   test('calculateAndPrintResults 메소드가 정상적으로 동작하는지 테스트', () => {
@@ -87,12 +86,11 @@ describe('LottoGame 클래스 테스트', () => {
     LottoCenter.mockImplementation(() => mockLottoCenter);
 
     const printModule = require('../src/utility/console.js');
-    const printSpy = jest.spyOn(printModule, 'print'); // print 함수 모킹
+    const printSpy = jest.spyOn(printModule, 'print');
 
     lottoGame.calculateAndPrintReturnRate(
       mockLottoCenter.getLottoResultsList(),
     );
-
     expect(printSpy).toHaveBeenCalled(); // 수익률 출력이 일어났는지 확인
   });
 });

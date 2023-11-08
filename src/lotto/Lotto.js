@@ -50,8 +50,8 @@ class Lotto {
       return LOTTO_RANK.first.rank;
     }
     if (
-      matchedNumberCount === LOTTO_RANK.second.matchedNumber &&
-      this.#hasBonusNumber(bonusNumber)
+      this.#hasBonusNumber(bonusNumber) &&
+      matchedNumberCount === LOTTO_RANK.second.matchedNumber
     ) {
       return LOTTO_RANK.second.rank;
     }

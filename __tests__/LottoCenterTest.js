@@ -6,8 +6,9 @@ describe('LottoCenter 클래스 테스트', () => {
   let lottoCenter;
 
   beforeEach(() => {
+    const lottoCount = 5;
     // 5개의 로또를 가정하고, 각 로또는 getRank 메소드를 가지고 있으며, 이 메소드는 순위를 반환한다.
-    publishedLottoList = Array(5)
+    publishedLottoList = Array(lottoCount)
       .fill()
       .map(() => {
         const numbers = [1, 2, 3, 4, 5, 6]; // 임의의 로또 번호
@@ -32,7 +33,7 @@ describe('LottoCenter 클래스 테스트', () => {
   });
 
   test('inspectLottoWinningStatus 메소드가 각 로또의 getRank 메소드를 호출하는지 테스트', () => {
-    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const winningNumbers = [1, 10, 20, 30, 40, 42];
     const bonusNumber = 7;
 
     lottoCenter.inspectLottoWinningStatus(winningNumbers, bonusNumber);
@@ -43,18 +44,25 @@ describe('LottoCenter 클래스 테스트', () => {
   });
 
   test('getLottoResultsList 메소드가 올바른 결과를 반환하는지 테스트', () => {
-    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const winningNumbers = [1, 10, 20, 30, 40, 42];
     const bonusNumber = 7;
 
-    lottoCenter.inspectLottoWinningStatus(winningNumbers, bonusNumber); // 이 줄을 추가
+    lottoCenter.inspectLottoWinningStatus(winningNumbers, bonusNumber);
 
     const expectedResultsList = {
       first: 0,
       second: 0,
       third: 0,
       fourth: 0,
-      fifth: 5, // 5개의 로또가 모두 5등이라 가정
+      fifth: 5,
     };
+    // const expectedResultsList = {
+    //   first: 0,
+    //   second: 0,
+    //   third: 0,
+    //   fourth: 0,
+    //   fifth: 5, // 5개의 로또가 모두 5등이라 가정
+    // };
 
     expect(lottoCenter.getLottoResultsList()).toEqual(expectedResultsList);
   });

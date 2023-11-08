@@ -10,7 +10,6 @@ import {
 } from '../constant/constant.js';
 
 class LottoGame {
-  // private?
   lottoStore = null;
   lottoGameHost = null;
   lottoCenter = null;
@@ -18,6 +17,12 @@ class LottoGame {
   constructor() {
     this.lottoStore = new LottoStore();
     this.lottoGameHost = new LottoGameHost();
+  }
+
+  async buyAndIssueLottos() {
+    await this.lottoStore.setLottoStore();
+    this.lottoCenter = new LottoCenter(this.lottoStore.publishLottos());
+    this.lottoCenter.tryPrintAllLottoNumbers();
   }
 
   printResults(lottoResultsList) {
@@ -38,7 +43,17 @@ class LottoGame {
     });
   }
 
-  // 나눌까말까
+  getAndPrintResults() {
+    this.lottoCenter.inspectLottoWinningStatus(
+      this.lottoGameHost.getWinningNumbers(),
+      this.lottoGameHost.getBonusNumber(),
+    );
+
+    const lottoResultsList = this.lottoCenter.getLottoResultsList();
+    print(MESSAGE.titleForResults);
+    this.printResults(lottoResultsList);
+  }
+
   calculateReturnRate(money, lottoResultsList) {
     let rewardSum = 0;
     LOTTO_CONSTANT.reverseRankList.forEach((rank) => {
@@ -52,23 +67,10 @@ class LottoGame {
   }
 
   printReturnRate(returnRate) {
-    //const returnRate = this.calculateReturnRate();
     print(FORMATTER.returnRateFormatter(returnRate));
   }
 
-  calculateAndPrintResults() {
-    this.lottoCenter.inspectLottoWinningStatus(
-      this.lottoGameHost.getWinningNumbers(),
-      this.lottoGameHost.getBonusNumber(),
-    );
-
-    // 리턴받은 결과를 바탕으로 결과 출력
-    print(MESSAGE.titleForResults);
-    const lottoResultsList = this.lottoCenter.getLottoResultsList();
-    this.printResults(lottoResultsList);
-  }
-
-  calculateAndPrintReturnRate(lottoResultsList) {
+  getAndPrintReturnRate(lottoResultsList) {
     const returnRate = this.calculateReturnRate(
       this.lottoStore.getMoney(),
       lottoResultsList,
@@ -76,21 +78,13 @@ class LottoGame {
     this.printReturnRate(returnRate);
   }
 
-  // 금액을 입력받고 로또를 발행
-  async buyAndIssueLottos() {
-    await this.lottoStore.setLottoStore();
-    this.lottoCenter = new LottoCenter(this.lottoStore.publishLottos());
-    this.lottoCenter.tryPrintAllLottoNumbers();
-  }
-
   async playLottoGame() {
     await this.buyAndIssueLottos();
 
-    // 로또 당첨 번호들 세팅
     await this.lottoGameHost.setLottoWinningNumbers();
 
-    this.calculateAndPrintResults();
-    this.calculateAndPrintReturnRate(this.lottoCenter.getLottoResultsList());
+    this.getAndPrintResults();
+    this.getAndPrintReturnRate(this.lottoCenter.getLottoResultsList());
   }
 }
 

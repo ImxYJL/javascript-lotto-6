@@ -1,4 +1,4 @@
-import { LOTTO_RANK, LIMIT_CONSTANT } from '../constant/constant.js';
+import { LOTTO_RANK } from '../constant/constant.js';
 
 class LottoCenter {
   #publishedLottoList = [];
@@ -14,6 +14,18 @@ class LottoCenter {
       fourth: 0,
       fifth: 0,
     };
+  }
+
+  tryPrintAllLottoNumbers() {
+    this.#publishedLottoList.forEach((lotto) => {
+      lotto.printNumbers();
+    });
+  }
+
+  inspectLottoWinningStatus(winningNumbers, bonusNumber) {
+    this.#publishedLottoList.forEach((lotto) => {
+      this.#setLottoResultList(lotto.getRank(winningNumbers, bonusNumber));
+    });
   }
 
   #setLottoResultList(rank) {
@@ -34,18 +46,6 @@ class LottoCenter {
         this.#lottoResultsList[LOTTO_RANK.fifth.rank] += 1;
         break;
     }
-  }
-
-  tryPrintAllLottoNumbers() {
-    this.#publishedLottoList.forEach((lotto) => {
-      lotto.printNumbers();
-    });
-  }
-
-  inspectLottoWinningStatus(winningNumbers, bonusNumber) {
-    this.#publishedLottoList.forEach((lotto) => {
-      this.#setLottoResultList(lotto.getRank(winningNumbers, bonusNumber));
-    });
   }
 
   getLottoResultsList() {

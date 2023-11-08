@@ -32,6 +32,12 @@ class LottoStore {
     this.#isDivisibleBy1000,
   ];
 
+  #isDivisibleBy1000(money) {
+    if (money % LOTTO_CONSTANT.minPrice !== 0) {
+      throw new Error(ERROR_MESSAGE.wrongMoneyInput);
+    }
+  }
+
   async setLottoStore() {
     const moneyInput = await getAndValidateInput(
       MESSAGE.moneyInput,
@@ -43,10 +49,12 @@ class LottoStore {
     this.#printPublishCount();
   }
 
-  #isDivisibleBy1000(money) {
-    if (money % LOTTO_CONSTANT.minPrice !== 0) {
-      throw new Error(ERROR_MESSAGE.wrongMoneyInput);
-    }
+  getMoney() {
+    return this.#money;
+  }
+
+  #printPublishCount() {
+    print(FORMATTER.publishCountFormatter(this.#publishCount));
   }
 
   #getLottoNumbers() {
@@ -55,14 +63,6 @@ class LottoStore {
       LOTTO_CONSTANT.maxInclusive,
       LOTTO_CONSTANT.numberCount,
     ).sort((a, b) => a - b);
-  }
-
-  #printPublishCount() {
-    print(FORMATTER.publishCountFormatter(this.#publishCount));
-  }
-
-  getMoney() {
-    return this.#money;
   }
 
   publishLottos() {

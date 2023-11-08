@@ -39,6 +39,8 @@ describe('LottoStore 클래스 테스트', () => {
   });
 });
 
+// 않되 ~~
+
 describe('LottoStore 클래스 에러 발생 테스트', () => {
   test('setLottoStore에서 1000 미만의 입력에 예외를 발생시키는지 테스트', async () => {
     const UNDER_MIN_RANGE_MONEY = '900';

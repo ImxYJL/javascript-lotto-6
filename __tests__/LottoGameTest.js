@@ -46,7 +46,7 @@ describe('LottoGame 클래스 테스트', () => {
     expect(returnRate).toBe('16.0');
   });
 
-  test('calculateAndPrintResults 메소드가 정상적으로 동작하는지 테스트', () => {
+  test('getAndPrintResults 메소드가 정상적으로 동작하는지 테스트', () => {
     const mockLottoGameHost = new LottoGameHost();
     mockLottoGameHost.getWinningNumbers = jest
       .fn()
@@ -68,12 +68,12 @@ describe('LottoGame 클래스 테스트', () => {
 
     lottoGame.lottoCenter = mockLottoCenter;
 
-    lottoGame.calculateAndPrintResults();
+    lottoGame.getAndPrintResults();
 
     expect(lottoGame.lottoCenter.inspectLottoWinningStatus).toHaveBeenCalled();
   });
 
-  test('calculateAndPrintReturnRate 메소드가 정상적으로 동작하는지 테스트', () => {
+  test('getAndPrintReturnRate 메소드가 정상적으로 동작하는지 테스트', () => {
     const mockLottoCenter = new LottoCenter();
     mockLottoCenter.getLottoResultsList = jest.fn().mockReturnValue({
       first: 0,
@@ -88,9 +88,7 @@ describe('LottoGame 클래스 테스트', () => {
     const printModule = require('../src/utility/console.js');
     const printSpy = jest.spyOn(printModule, 'print');
 
-    lottoGame.calculateAndPrintReturnRate(
-      mockLottoCenter.getLottoResultsList(),
-    );
-    expect(printSpy).toHaveBeenCalled(); // 수익률 출력이 일어났는지 확인
+    lottoGame.getAndPrintReturnRate(mockLottoCenter.getLottoResultsList());
+    expect(printSpy).toHaveBeenCalled();
   });
 });
